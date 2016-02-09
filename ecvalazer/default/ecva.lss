@@ -3,31 +3,31 @@ ecva.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000008a0  00000000  00000000  00000094  2**1
+  0 .text         00000890  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000036  00800060  000008a0  00000934  2**0
+  1 .data         00000036  00800060  00000890  00000924  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          000003b1  00800096  00800096  0000096a  2**0
+  2 .bss          000003b1  00800096  00800096  0000095a  2**0
                   ALLOC
-  3 .stab         000006cc  00000000  00000000  0000096c  2**2
+  3 .stab         000006cc  00000000  00000000  0000095c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000085  00000000  00000000  00001038  2**0
+  4 .stabstr      00000085  00000000  00000000  00001028  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000060  00000000  00000000  000010c0  2**3
+  5 .debug_aranges 00000060  00000000  00000000  000010b0  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 00000126  00000000  00000000  00001120  2**0
+  6 .debug_pubnames 00000126  00000000  00000000  00001110  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00000646  00000000  00000000  00001246  2**0
+  7 .debug_info   00000643  00000000  00000000  00001236  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00000373  00000000  00000000  0000188c  2**0
+  8 .debug_abbrev 00000364  00000000  00000000  00001879  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   0000060f  00000000  00000000  00001bff  2**0
+  9 .debug_line   0000060f  00000000  00000000  00001bdd  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  000000c0  00000000  00000000  00002210  2**2
+ 10 .debug_frame  000000c0  00000000  00000000  000021ec  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    00000206  00000000  00000000  000022d0  2**0
+ 11 .debug_str    00000206  00000000  00000000  000022ac  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    000001e5  00000000  00000000  000024d6  2**0
+ 12 .debug_loc    00000209  00000000  00000000  000024b2  2**0
                   CONTENTS, READONLY, DEBUGGING
  13 .debug_pubtypes 0000008f  00000000  00000000  000026bb  2**0
                   CONTENTS, READONLY, DEBUGGING
@@ -48,7 +48,7 @@ Disassembly of section .text:
   20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  2c:	0c 94 01 04 	jmp	0x802	; 0x802 <__vector_11>
+  2c:	0c 94 f9 03 	jmp	0x7f2	; 0x7f2 <__vector_11>
   30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
@@ -71,7 +71,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e0 ea       	ldi	r30, 0xA0	; 160
+  66:	e0 e9       	ldi	r30, 0x90	; 144
   68:	f8 e0       	ldi	r31, 0x08	; 8
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -94,7 +94,7 @@ Disassembly of section .text:
   82:	b1 07       	cpc	r27, r17
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
   86:	0e 94 32 03 	call	0x664	; 0x664 <main>
-  8a:	0c 94 4e 04 	jmp	0x89c	; 0x89c <_exit>
+  8a:	0c 94 46 04 	jmp	0x88c	; 0x88c <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -308,13 +308,13 @@ Disassembly of section .text:
  228:	29 7c       	andi	r18, 0xC9	; 201
  22a:	d9 da       	rcall	.-2638   	; 0xfffff7de <__eeprom_end+0xff7ef7de>
  22c:	7c 7a       	andi	r23, 0xAC	; 172
- 22e:	e2 d4       	rcall	.+2500   	; 0xbf4 <__data_load_end+0x31e>
+ 22e:	e2 d4       	rcall	.+2500   	; 0xbf4 <__data_load_end+0x32e>
  230:	83 78       	andi	r24, 0x83	; 131
  232:	05 cf       	rjmp	.-502    	; 0x3e <__SP_H__>
  234:	40 76       	andi	r20, 0x60	; 96
  236:	47 c9       	rjmp	.-3442   	; 0xfffff4c6 <__eeprom_end+0xff7ef4c6>
  238:	b5 73       	andi	r27, 0x35	; 53
- 23a:	aa c3       	rjmp	.+1876   	; 0x990 <__data_load_end+0xba>
+ 23a:	aa c3       	rjmp	.+1876   	; 0x990 <__data_load_end+0xca>
  23c:	e1 70       	andi	r30, 0x01	; 1
  23e:	33 be       	out	0x33, r3	; 51
  240:	c9 6d       	ori	r28, 0xD9	; 217
@@ -1038,8 +1038,9 @@ void capture_wave (int16_t *buffer, uint16_t count)
 
 	do {
 //		ADCSRA = _BV(ADEN)|_BV(ADSC)|_BV(ADATE)|_BV(ADIF)|_BV(ADPS2)|_BV(ADPS1);
-		ADCSRA = _BV(ADEN)|_BV(ADSC)|_BV(ADATE)|_BV(ADIF);
- 646:	20 ef       	ldi	r18, 0xF0	; 240
+//		ADCSRA = _BV(ADEN)|_BV(ADSC)|_BV(ADATE)|_BV(ADIF)|_BV(ADPS2);
+		ADCSRA = _BV(ADEN)|_BV(ADSC)|_BV(ADATE)|_BV(ADIF)|_BV(ADPS2)|_BV(ADPS0);
+ 646:	25 ef       	ldi	r18, 0xF5	; 245
  648:	26 b9       	out	0x06, r18	; 6
 		while(bit_is_clear(ADCSRA, ADIF));
  64a:	34 9b       	sbis	0x06, 4	; 6
@@ -1051,6 +1052,7 @@ void capture_wave (int16_t *buffer, uint16_t count)
  654:	92 40       	sbci	r25, 0x02	; 2
  656:	81 93       	st	Z+, r24
  658:	91 93       	st	Z+, r25
+
 	} while(--count);
  65a:	61 50       	subi	r22, 0x01	; 1
  65c:	70 40       	sbci	r23, 0x00	; 0
@@ -1080,17 +1082,17 @@ int main (void)
 	//TCCR1B = 3;	/* clk/64 */
 
 	loggerInit();
- 670:	0e 94 a1 03 	call	0x742	; 0x742 <loggerInit>
+ 670:	0e 94 99 03 	call	0x732	; 0x732 <loggerInit>
 	loggerWriteToMarker((LogMesT)"\r\nFFT sample program\r\n*", '*');
  674:	80 e6       	ldi	r24, 0x60	; 96
  676:	90 e0       	ldi	r25, 0x00	; 0
  678:	6a e2       	ldi	r22, 0x2A	; 42
- 67a:	0e 94 f5 03 	call	0x7ea	; 0x7ea <loggerWriteToMarker>
+ 67a:	0e 94 ed 03 	call	0x7da	; 0x7da <loggerWriteToMarker>
 	loggerWriteToMarker((LogMesT)"\r\n>*", '*');			/* Prompt */
  67e:	88 e7       	ldi	r24, 0x78	; 120
  680:	90 e0       	ldi	r25, 0x00	; 0
  682:	6a e2       	ldi	r22, 0x2A	; 42
- 684:	0e 94 f5 03 	call	0x7ea	; 0x7ea <loggerWriteToMarker>
+ 684:	0e 94 ed 03 	call	0x7da	; 0x7da <loggerWriteToMarker>
 					//xmit('*');
 				}
 				break;
@@ -1100,7 +1102,7 @@ int main (void)
  688:	8d e7       	ldi	r24, 0x7D	; 125
  68a:	90 e0       	ldi	r25, 0x00	; 0
  68c:	6a e2       	ldi	r22, 0x2A	; 42
- 68e:	0e 94 f5 03 	call	0x7ea	; 0x7ea <loggerWriteToMarker>
+ 68e:	0e 94 ed 03 	call	0x7da	; 0x7da <loggerWriteToMarker>
 				capture_wave(capture, FFT_N);
  692:	87 ea       	ldi	r24, 0xA7	; 167
  694:	92 e0       	ldi	r25, 0x02	; 2
@@ -1133,497 +1135,493 @@ int main (void)
  6ba:	67 ea       	ldi	r22, 0xA7	; 167
  6bc:	73 e0       	ldi	r23, 0x03	; 3
  6be:	0e 94 82 02 	call	0x504	; 0x504 <fft_output>
- 6c2:	97 ea       	ldi	r25, 0xA7	; 167
- 6c4:	e9 2e       	mov	r14, r25
- 6c6:	93 e0       	ldi	r25, 0x03	; 3
- 6c8:	f9 2e       	mov	r15, r25
+ 6c2:	87 ea       	ldi	r24, 0xA7	; 167
+ 6c4:	e8 2e       	mov	r14, r24
+ 6c6:	83 e0       	ldi	r24, 0x03	; 3
+ 6c8:	f8 2e       	mov	r15, r24
 				//t3 = TCNT1;
 				for (n = 0; n < FFT_N / 2; n+=2) {
-					s = (spektrum[n] + spektrum[n+1]) / 2;
+					//s = (spektrum[n] + spektrum[n+1]) / 2;
+					s = spektrum[n];
  6ca:	d7 01       	movw	r26, r14
- 6cc:	12 96       	adiw	r26, 0x02	; 2
- 6ce:	0d 91       	ld	r16, X+
- 6d0:	1c 91       	ld	r17, X
- 6d2:	13 97       	sbiw	r26, 0x03	; 3
- 6d4:	8d 91       	ld	r24, X+
- 6d6:	9c 91       	ld	r25, X
- 6d8:	08 0f       	add	r16, r24
- 6da:	19 1f       	adc	r17, r25
- 6dc:	16 95       	lsr	r17
- 6de:	07 95       	ror	r16
+ 6cc:	0d 91       	ld	r16, X+
+ 6ce:	1c 91       	ld	r17, X
 					//xmitf(PSTR("\r\n%4u:%5u "), n, s);
-					loggerWriteToMarker((LogMesT)"\r*", '*');
- 6e0:	8f e8       	ldi	r24, 0x8F	; 143
- 6e2:	90 e0       	ldi	r25, 0x00	; 0
- 6e4:	6a e2       	ldi	r22, 0x2A	; 42
- 6e6:	0e 94 f5 03 	call	0x7ea	; 0x7ea <loggerWriteToMarker>
+					//char str[10];
+					//sprintf(str, "\n\r %d**",n);
+					//loggerWriteToMarker((LogMesT)str, '*');
+					loggerWrite("\n\r",2);
+ 6d0:	8f e8       	ldi	r24, 0x8F	; 143
+ 6d2:	90 e0       	ldi	r25, 0x00	; 0
+ 6d4:	62 e0       	ldi	r22, 0x02	; 2
+ 6d6:	0e 94 dc 03 	call	0x7b8	; 0x7b8 <loggerWrite>
 					//s /= FFT_N;
 					for (m = 0; m < s; m++) loggerWrite("**",1);
- 6ea:	01 15       	cp	r16, r1
- 6ec:	11 05       	cpc	r17, r1
- 6ee:	59 f0       	breq	.+22     	; 0x706 <main+0xa2>
- 6f0:	c0 e0       	ldi	r28, 0x00	; 0
- 6f2:	d0 e0       	ldi	r29, 0x00	; 0
- 6f4:	82 e9       	ldi	r24, 0x92	; 146
- 6f6:	90 e0       	ldi	r25, 0x00	; 0
- 6f8:	61 e0       	ldi	r22, 0x01	; 1
- 6fa:	0e 94 e4 03 	call	0x7c8	; 0x7c8 <loggerWrite>
- 6fe:	21 96       	adiw	r28, 0x01	; 1
- 700:	c0 17       	cp	r28, r16
- 702:	d1 07       	cpc	r29, r17
- 704:	b8 f3       	brcs	.-18     	; 0x6f4 <main+0x90>
- 706:	e4 e0       	ldi	r30, 0x04	; 4
- 708:	f0 e0       	ldi	r31, 0x00	; 0
- 70a:	ee 0e       	add	r14, r30
- 70c:	ff 1e       	adc	r15, r31
+ 6da:	01 15       	cp	r16, r1
+ 6dc:	11 05       	cpc	r17, r1
+ 6de:	59 f0       	breq	.+22     	; 0x6f6 <main+0x92>
+ 6e0:	c0 e0       	ldi	r28, 0x00	; 0
+ 6e2:	d0 e0       	ldi	r29, 0x00	; 0
+ 6e4:	82 e9       	ldi	r24, 0x92	; 146
+ 6e6:	90 e0       	ldi	r25, 0x00	; 0
+ 6e8:	61 e0       	ldi	r22, 0x01	; 1
+ 6ea:	0e 94 dc 03 	call	0x7b8	; 0x7b8 <loggerWrite>
+ 6ee:	21 96       	adiw	r28, 0x01	; 1
+ 6f0:	c0 17       	cp	r28, r16
+ 6f2:	d1 07       	cpc	r29, r17
+ 6f4:	b8 f3       	brcs	.-18     	; 0x6e4 <main+0x80>
+ 6f6:	e4 e0       	ldi	r30, 0x04	; 4
+ 6f8:	f0 e0       	ldi	r31, 0x00	; 0
+ 6fa:	ee 0e       	add	r14, r30
+ 6fc:	ff 1e       	adc	r15, r31
 				//t1 = TCNT1; TCNT1 = 0;
 				fft_execute(bfly_buff);
 				//t2 = TCNT1; TCNT1 = 0;
 				fft_output(bfly_buff, spektrum);
 				//t3 = TCNT1;
 				for (n = 0; n < FFT_N / 2; n+=2) {
- 70e:	f7 e2       	ldi	r31, 0x27	; 39
- 710:	ef 16       	cp	r14, r31
- 712:	f4 e0       	ldi	r31, 0x04	; 4
- 714:	ff 06       	cpc	r15, r31
- 716:	c9 f6       	brne	.-78     	; 0x6ca <main+0x66>
+ 6fe:	f7 e2       	ldi	r31, 0x27	; 39
+ 700:	ef 16       	cp	r14, r31
+ 702:	f4 e0       	ldi	r31, 0x04	; 4
+ 704:	ff 06       	cpc	r15, r31
+ 706:	09 f7       	brne	.-62     	; 0x6ca <main+0x66>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 718:	8f ef       	ldi	r24, 0xFF	; 255
- 71a:	99 e6       	ldi	r25, 0x69	; 105
- 71c:	a8 e1       	ldi	r26, 0x18	; 24
- 71e:	81 50       	subi	r24, 0x01	; 1
- 720:	90 40       	sbci	r25, 0x00	; 0
- 722:	a0 40       	sbci	r26, 0x00	; 0
- 724:	e1 f7       	brne	.-8      	; 0x71e <main+0xba>
- 726:	00 c0       	rjmp	.+0      	; 0x728 <main+0xc4>
- 728:	00 00       	nop
+ 708:	8f ef       	ldi	r24, 0xFF	; 255
+ 70a:	99 e6       	ldi	r25, 0x69	; 105
+ 70c:	a8 e1       	ldi	r26, 0x18	; 24
+ 70e:	81 50       	subi	r24, 0x01	; 1
+ 710:	90 40       	sbci	r25, 0x00	; 0
+ 712:	a0 40       	sbci	r26, 0x00	; 0
+ 714:	e1 f7       	brne	.-8      	; 0x70e <main+0xaa>
+ 716:	00 c0       	rjmp	.+0      	; 0x718 <main+0xb4>
+ 718:	00 00       	nop
 					for (m = 0; m < s; m++) loggerWrite("**",1);
 				}
 				//xmitf(PSTR("\r\ninput=%u, execute=%u, output=%u (x64clk)"), t1,t2,t3);
 
 				_delay_ms(1000);
 				break;
- 72a:	ae cf       	rjmp	.-164    	; 0x688 <main+0x24>
+ 71a:	b6 cf       	rjmp	.-148    	; 0x688 <main+0x24>
 
-0000072c <GPIO_Configuration>:
-
-}
-//=============================================================================
-void GPIO_Configuration(void)
-{
-	UPBIT(DDRD, 1); // Tx
- 72c:	89 9a       	sbi	0x11, 1	; 17
-
-}
- 72e:	08 95       	ret
-
-00000730 <USART_Configuration>:
-
-	#define F_CPU_MY 8000000
-	#define USART_BAUDRATE 9600
-	#define BAUD_PRESCALE (((F_CPU_MY / (USART_BAUDRATE * 16UL))) - 1)
-
-	UCSRB = ( 1 << TXEN ) | ( 1 << RXEN ) | (1 << RXCIE ); // rx enable, tx enable, rx_interrupt enable
- 730:	88 e9       	ldi	r24, 0x98	; 152
- 732:	8a b9       	out	0x0a, r24	; 10
-	UCSRC = (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1); // Use 8-bit character sizes
- 734:	86 e8       	ldi	r24, 0x86	; 134
- 736:	80 bd       	out	0x20, r24	; 32
-
-	UBRRH = 0;//(BAUD_PRESCALE >> 8); // Load upper 8-bits of the baud rate value into the high byte of the UBRR register
- 738:	10 bc       	out	0x20, r1	; 32
-	UBRRL = 50;//BAUD_PRESCALE; // Load lower 8-bits of the baud rate value into the low byte of the UBRR register
- 73a:	82 e3       	ldi	r24, 0x32	; 50
- 73c:	89 b9       	out	0x09, r24	; 9
-
-
-
-
-sei();
- 73e:	78 94       	sei
-
-}
- 740:	08 95       	ret
-
-00000742 <loggerInit>:
+0000071c <GPIO_Configuration>:
 
 }
 //=============================================================================
 void GPIO_Configuration(void)
 {
 	UPBIT(DDRD, 1); // Tx
- 742:	89 9a       	sbi	0x11, 1	; 17
+ 71c:	89 9a       	sbi	0x11, 1	; 17
+
+}
+ 71e:	08 95       	ret
+
+00000720 <USART_Configuration>:
 
 	#define F_CPU_MY 8000000
 	#define USART_BAUDRATE 9600
 	#define BAUD_PRESCALE (((F_CPU_MY / (USART_BAUDRATE * 16UL))) - 1)
 
 	UCSRB = ( 1 << TXEN ) | ( 1 << RXEN ) | (1 << RXCIE ); // rx enable, tx enable, rx_interrupt enable
- 744:	88 e9       	ldi	r24, 0x98	; 152
- 746:	8a b9       	out	0x0a, r24	; 10
+ 720:	88 e9       	ldi	r24, 0x98	; 152
+ 722:	8a b9       	out	0x0a, r24	; 10
 	UCSRC = (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1); // Use 8-bit character sizes
- 748:	86 e8       	ldi	r24, 0x86	; 134
- 74a:	80 bd       	out	0x20, r24	; 32
+ 724:	86 e8       	ldi	r24, 0x86	; 134
+ 726:	80 bd       	out	0x20, r24	; 32
 
 	UBRRH = 0;//(BAUD_PRESCALE >> 8); // Load upper 8-bits of the baud rate value into the high byte of the UBRR register
- 74c:	10 bc       	out	0x20, r1	; 32
+ 728:	10 bc       	out	0x20, r1	; 32
 	UBRRL = 50;//BAUD_PRESCALE; // Load lower 8-bits of the baud rate value into the low byte of the UBRR register
- 74e:	82 e3       	ldi	r24, 0x32	; 50
- 750:	89 b9       	out	0x09, r24	; 9
+ 72a:	82 e3       	ldi	r24, 0x32	; 50
+ 72c:	89 b9       	out	0x09, r24	; 9
 
 
 
 
 sei();
- 752:	78 94       	sei
+ 72e:	78 94       	sei
+
+}
+ 730:	08 95       	ret
+
+00000732 <loggerInit>:
+
+}
+//=============================================================================
+void GPIO_Configuration(void)
+{
+	UPBIT(DDRD, 1); // Tx
+ 732:	89 9a       	sbi	0x11, 1	; 17
+
+	#define F_CPU_MY 8000000
+	#define USART_BAUDRATE 9600
+	#define BAUD_PRESCALE (((F_CPU_MY / (USART_BAUDRATE * 16UL))) - 1)
+
+	UCSRB = ( 1 << TXEN ) | ( 1 << RXEN ) | (1 << RXCIE ); // rx enable, tx enable, rx_interrupt enable
+ 734:	88 e9       	ldi	r24, 0x98	; 152
+ 736:	8a b9       	out	0x0a, r24	; 10
+	UCSRC = (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1); // Use 8-bit character sizes
+ 738:	86 e8       	ldi	r24, 0x86	; 134
+ 73a:	80 bd       	out	0x20, r24	; 32
+
+	UBRRH = 0;//(BAUD_PRESCALE >> 8); // Load upper 8-bits of the baud rate value into the high byte of the UBRR register
+ 73c:	10 bc       	out	0x20, r1	; 32
+	UBRRL = 50;//BAUD_PRESCALE; // Load lower 8-bits of the baud rate value into the low byte of the UBRR register
+ 73e:	82 e3       	ldi	r24, 0x32	; 50
+ 740:	89 b9       	out	0x09, r24	; 9
+
+
+
+
+sei();
+ 742:	78 94       	sei
 //      PUBLICK      FUNCTIONS      PUBLICK      FUNCTIONS      PUBLICK     
 //=============================================================================
 //=============================================================================
 void loggerInit(){
 	usart_init();
 }
- 754:	08 95       	ret
+ 744:	08 95       	ret
 
-00000756 <loggerWriteByteInBit>:
+00000746 <loggerWriteByteInBit>:
 //=============================================================================
 void loggerWriteByteInBit(const unsigned char byte){
- 756:	df 93       	push	r29
- 758:	cf 93       	push	r28
- 75a:	cd b7       	in	r28, 0x3d	; 61
- 75c:	de b7       	in	r29, 0x3e	; 62
- 75e:	28 97       	sbiw	r28, 0x08	; 8
- 760:	0f b6       	in	r0, 0x3f	; 63
- 762:	f8 94       	cli
- 764:	de bf       	out	0x3e, r29	; 62
- 766:	0f be       	out	0x3f, r0	; 63
- 768:	cd bf       	out	0x3d, r28	; 61
+ 746:	df 93       	push	r29
+ 748:	cf 93       	push	r28
+ 74a:	cd b7       	in	r28, 0x3d	; 61
+ 74c:	de b7       	in	r29, 0x3e	; 62
+ 74e:	28 97       	sbiw	r28, 0x08	; 8
+ 750:	0f b6       	in	r0, 0x3f	; 63
+ 752:	f8 94       	cli
+ 754:	de bf       	out	0x3e, r29	; 62
+ 756:	0f be       	out	0x3f, r0	; 63
+ 758:	cd bf       	out	0x3d, r28	; 61
 	char bit[8];
 	for (char i = 0, j = 7; i < 8; i++, j--){
 		bit[i] = ((byte & (1<<j)) > 0) ? '1' : '0';
- 76a:	90 e0       	ldi	r25, 0x00	; 0
- 76c:	fe 01       	movw	r30, r28
- 76e:	31 96       	adiw	r30, 0x01	; 1
+ 75a:	90 e0       	ldi	r25, 0x00	; 0
+ 75c:	fe 01       	movw	r30, r28
+ 75e:	31 96       	adiw	r30, 0x01	; 1
 //=============================================================================
 void loggerInit(){
 	usart_init();
 }
 //=============================================================================
 void loggerWriteByteInBit(const unsigned char byte){
- 770:	df 01       	movw	r26, r30
+ 760:	df 01       	movw	r26, r30
 	char bit[8];
 	for (char i = 0, j = 7; i < 8; i++, j--){
- 772:	67 e0       	ldi	r22, 0x07	; 7
+ 762:	67 e0       	ldi	r22, 0x07	; 7
 		bit[i] = ((byte & (1<<j)) > 0) ? '1' : '0';
- 774:	41 e0       	ldi	r20, 0x01	; 1
- 776:	50 e0       	ldi	r21, 0x00	; 0
- 778:	05 c0       	rjmp	.+10     	; 0x784 <loggerWriteByteInBit+0x2e>
- 77a:	21 e3       	ldi	r18, 0x31	; 49
- 77c:	2d 93       	st	X+, r18
+ 764:	41 e0       	ldi	r20, 0x01	; 1
+ 766:	50 e0       	ldi	r21, 0x00	; 0
+ 768:	05 c0       	rjmp	.+10     	; 0x774 <loggerWriteByteInBit+0x2e>
+ 76a:	21 e3       	ldi	r18, 0x31	; 49
+ 76c:	2d 93       	st	X+, r18
 	usart_init();
 }
 //=============================================================================
 void loggerWriteByteInBit(const unsigned char byte){
 	char bit[8];
 	for (char i = 0, j = 7; i < 8; i++, j--){
- 77e:	66 23       	and	r22, r22
- 780:	89 f0       	breq	.+34     	; 0x7a4 <loggerWriteByteInBit+0x4e>
- 782:	61 50       	subi	r22, 0x01	; 1
+ 76e:	66 23       	and	r22, r22
+ 770:	89 f0       	breq	.+34     	; 0x794 <loggerWriteByteInBit+0x4e>
+ 772:	61 50       	subi	r22, 0x01	; 1
 		bit[i] = ((byte & (1<<j)) > 0) ? '1' : '0';
- 784:	9a 01       	movw	r18, r20
- 786:	06 2e       	mov	r0, r22
- 788:	02 c0       	rjmp	.+4      	; 0x78e <loggerWriteByteInBit+0x38>
- 78a:	22 0f       	add	r18, r18
- 78c:	33 1f       	adc	r19, r19
- 78e:	0a 94       	dec	r0
- 790:	e2 f7       	brpl	.-8      	; 0x78a <loggerWriteByteInBit+0x34>
- 792:	28 23       	and	r18, r24
- 794:	39 23       	and	r19, r25
- 796:	12 16       	cp	r1, r18
- 798:	13 06       	cpc	r1, r19
- 79a:	7c f3       	brlt	.-34     	; 0x77a <loggerWriteByteInBit+0x24>
- 79c:	20 e3       	ldi	r18, 0x30	; 48
- 79e:	2d 93       	st	X+, r18
+ 774:	9a 01       	movw	r18, r20
+ 776:	06 2e       	mov	r0, r22
+ 778:	02 c0       	rjmp	.+4      	; 0x77e <loggerWriteByteInBit+0x38>
+ 77a:	22 0f       	add	r18, r18
+ 77c:	33 1f       	adc	r19, r19
+ 77e:	0a 94       	dec	r0
+ 780:	e2 f7       	brpl	.-8      	; 0x77a <loggerWriteByteInBit+0x34>
+ 782:	28 23       	and	r18, r24
+ 784:	39 23       	and	r19, r25
+ 786:	12 16       	cp	r1, r18
+ 788:	13 06       	cpc	r1, r19
+ 78a:	7c f3       	brlt	.-34     	; 0x76a <loggerWriteByteInBit+0x24>
+ 78c:	20 e3       	ldi	r18, 0x30	; 48
+ 78e:	2d 93       	st	X+, r18
 	usart_init();
 }
 //=============================================================================
 void loggerWriteByteInBit(const unsigned char byte){
 	char bit[8];
 	for (char i = 0, j = 7; i < 8; i++, j--){
- 7a0:	66 23       	and	r22, r22
- 7a2:	79 f7       	brne	.-34     	; 0x782 <loggerWriteByteInBit+0x2c>
+ 790:	66 23       	and	r22, r22
+ 792:	79 f7       	brne	.-34     	; 0x772 <loggerWriteByteInBit+0x2c>
 //=============================================================================
 void loggerInit(){
 	usart_init();
 }
 //=============================================================================
 void loggerWriteByteInBit(const unsigned char byte){
- 7a4:	ce 01       	movw	r24, r28
- 7a6:	09 96       	adiw	r24, 0x09	; 9
+ 794:	ce 01       	movw	r24, r28
+ 796:	09 96       	adiw	r24, 0x09	; 9
 }
 //=============================================================================
 void loggerWrite(const unsigned char *message, char count){
     while(count--)
     {
         while ( !( UCSRA & (1<<5)) ) {} 
- 7a8:	5d 9b       	sbis	0x0b, 5	; 11
- 7aa:	fe cf       	rjmp	.-4      	; 0x7a8 <loggerWriteByteInBit+0x52>
+ 798:	5d 9b       	sbis	0x0b, 5	; 11
+ 79a:	fe cf       	rjmp	.-4      	; 0x798 <loggerWriteByteInBit+0x52>
         UDR=*message++;
- 7ac:	21 91       	ld	r18, Z+
- 7ae:	2c b9       	out	0x0c, r18	; 12
+ 79c:	21 91       	ld	r18, Z+
+ 79e:	2c b9       	out	0x0c, r18	; 12
 	}
 	loggerWrite(bit,8);
 }
 //=============================================================================
 void loggerWrite(const unsigned char *message, char count){
     while(count--)
- 7b0:	e8 17       	cp	r30, r24
- 7b2:	f9 07       	cpc	r31, r25
- 7b4:	c9 f7       	brne	.-14     	; 0x7a8 <loggerWriteByteInBit+0x52>
+ 7a0:	e8 17       	cp	r30, r24
+ 7a2:	f9 07       	cpc	r31, r25
+ 7a4:	c9 f7       	brne	.-14     	; 0x798 <loggerWriteByteInBit+0x52>
 	char bit[8];
 	for (char i = 0, j = 7; i < 8; i++, j--){
 		bit[i] = ((byte & (1<<j)) > 0) ? '1' : '0';
 	}
 	loggerWrite(bit,8);
 }
- 7b6:	28 96       	adiw	r28, 0x08	; 8
- 7b8:	0f b6       	in	r0, 0x3f	; 63
- 7ba:	f8 94       	cli
- 7bc:	de bf       	out	0x3e, r29	; 62
- 7be:	0f be       	out	0x3f, r0	; 63
- 7c0:	cd bf       	out	0x3d, r28	; 61
- 7c2:	cf 91       	pop	r28
- 7c4:	df 91       	pop	r29
- 7c6:	08 95       	ret
+ 7a6:	28 96       	adiw	r28, 0x08	; 8
+ 7a8:	0f b6       	in	r0, 0x3f	; 63
+ 7aa:	f8 94       	cli
+ 7ac:	de bf       	out	0x3e, r29	; 62
+ 7ae:	0f be       	out	0x3f, r0	; 63
+ 7b0:	cd bf       	out	0x3d, r28	; 61
+ 7b2:	cf 91       	pop	r28
+ 7b4:	df 91       	pop	r29
+ 7b6:	08 95       	ret
 
-000007c8 <loggerWrite>:
+000007b8 <loggerWrite>:
 //=============================================================================
 void loggerWrite(const unsigned char *message, char count){
     while(count--)
- 7c8:	66 23       	and	r22, r22
- 7ca:	71 f0       	breq	.+28     	; 0x7e8 <loggerWrite+0x20>
- 7cc:	e8 2f       	mov	r30, r24
- 7ce:	f9 2f       	mov	r31, r25
+ 7b8:	66 23       	and	r22, r22
+ 7ba:	71 f0       	breq	.+28     	; 0x7d8 <loggerWrite+0x20>
+ 7bc:	e8 2f       	mov	r30, r24
+ 7be:	f9 2f       	mov	r31, r25
 		bit[i] = ((byte & (1<<j)) > 0) ? '1' : '0';
 	}
 	loggerWrite(bit,8);
 }
 //=============================================================================
 void loggerWrite(const unsigned char *message, char count){
- 7d0:	cf 01       	movw	r24, r30
- 7d2:	01 96       	adiw	r24, 0x01	; 1
+ 7c0:	cf 01       	movw	r24, r30
+ 7c2:	01 96       	adiw	r24, 0x01	; 1
     while(count--)
- 7d4:	61 50       	subi	r22, 0x01	; 1
+ 7c4:	61 50       	subi	r22, 0x01	; 1
 		bit[i] = ((byte & (1<<j)) > 0) ? '1' : '0';
 	}
 	loggerWrite(bit,8);
 }
 //=============================================================================
 void loggerWrite(const unsigned char *message, char count){
- 7d6:	86 0f       	add	r24, r22
- 7d8:	91 1d       	adc	r25, r1
+ 7c6:	86 0f       	add	r24, r22
+ 7c8:	91 1d       	adc	r25, r1
     while(count--)
     {
         while ( !( UCSRA & (1<<5)) ) {} 
- 7da:	5d 9b       	sbis	0x0b, 5	; 11
- 7dc:	fe cf       	rjmp	.-4      	; 0x7da <loggerWrite+0x12>
+ 7ca:	5d 9b       	sbis	0x0b, 5	; 11
+ 7cc:	fe cf       	rjmp	.-4      	; 0x7ca <loggerWrite+0x12>
         UDR=*message++;
- 7de:	21 91       	ld	r18, Z+
- 7e0:	2c b9       	out	0x0c, r18	; 12
+ 7ce:	21 91       	ld	r18, Z+
+ 7d0:	2c b9       	out	0x0c, r18	; 12
 	}
 	loggerWrite(bit,8);
 }
 //=============================================================================
 void loggerWrite(const unsigned char *message, char count){
     while(count--)
- 7e2:	e8 17       	cp	r30, r24
- 7e4:	f9 07       	cpc	r31, r25
- 7e6:	c9 f7       	brne	.-14     	; 0x7da <loggerWrite+0x12>
- 7e8:	08 95       	ret
+ 7d2:	e8 17       	cp	r30, r24
+ 7d4:	f9 07       	cpc	r31, r25
+ 7d6:	c9 f7       	brne	.-14     	; 0x7ca <loggerWrite+0x12>
+ 7d8:	08 95       	ret
 
-000007ea <loggerWriteToMarker>:
+000007da <loggerWriteToMarker>:
         UDR=*message++;
     }
 }
 //=============================================================================
 void loggerWriteToMarker(const unsigned char *message, char end_markser){
     while(*message != end_markser)
- 7ea:	fc 01       	movw	r30, r24
- 7ec:	20 81       	ld	r18, Z
- 7ee:	26 17       	cp	r18, r22
- 7f0:	39 f0       	breq	.+14     	; 0x800 <loggerWriteToMarker+0x16>
+ 7da:	fc 01       	movw	r30, r24
+ 7dc:	20 81       	ld	r18, Z
+ 7de:	26 17       	cp	r18, r22
+ 7e0:	39 f0       	breq	.+14     	; 0x7f0 <loggerWriteToMarker+0x16>
         while ( !( UCSRA & (1<<5)) ) {} 
         UDR=*message++;
     }
 }
 //=============================================================================
 void loggerWriteToMarker(const unsigned char *message, char end_markser){
- 7f2:	31 96       	adiw	r30, 0x01	; 1
+ 7e2:	31 96       	adiw	r30, 0x01	; 1
     while(*message != end_markser)
     {
         while ( !( UCSRA & (1<<5)) ) {} 
- 7f4:	5d 9b       	sbis	0x0b, 5	; 11
- 7f6:	fe cf       	rjmp	.-4      	; 0x7f4 <loggerWriteToMarker+0xa>
+ 7e4:	5d 9b       	sbis	0x0b, 5	; 11
+ 7e6:	fe cf       	rjmp	.-4      	; 0x7e4 <loggerWriteToMarker+0xa>
         UDR=*message++;
- 7f8:	2c b9       	out	0x0c, r18	; 12
+ 7e8:	2c b9       	out	0x0c, r18	; 12
         UDR=*message++;
     }
 }
 //=============================================================================
 void loggerWriteToMarker(const unsigned char *message, char end_markser){
     while(*message != end_markser)
- 7fa:	21 91       	ld	r18, Z+
- 7fc:	26 17       	cp	r18, r22
- 7fe:	d1 f7       	brne	.-12     	; 0x7f4 <loggerWriteToMarker+0xa>
- 800:	08 95       	ret
+ 7ea:	21 91       	ld	r18, Z+
+ 7ec:	26 17       	cp	r18, r22
+ 7ee:	d1 f7       	brne	.-12     	; 0x7e4 <loggerWriteToMarker+0xa>
+ 7f0:	08 95       	ret
 
-00000802 <__vector_11>:
+000007f2 <__vector_11>:
         UDR=*message++;
     }
 }
 //=============================================================================
 ISR (USART_RXC_vect)
 {
- 802:	1f 92       	push	r1
- 804:	0f 92       	push	r0
- 806:	0f b6       	in	r0, 0x3f	; 63
- 808:	0f 92       	push	r0
- 80a:	11 24       	eor	r1, r1
- 80c:	8f 93       	push	r24
- 80e:	9f 93       	push	r25
- 810:	ef 93       	push	r30
- 812:	ff 93       	push	r31
+ 7f2:	1f 92       	push	r1
+ 7f4:	0f 92       	push	r0
+ 7f6:	0f b6       	in	r0, 0x3f	; 63
+ 7f8:	0f 92       	push	r0
+ 7fa:	11 24       	eor	r1, r1
+ 7fc:	8f 93       	push	r24
+ 7fe:	9f 93       	push	r25
+ 800:	ef 93       	push	r30
+ 802:	ff 93       	push	r31
 	//ledTaggle(LEDRED1);
 	char status,data;
 	status = UCSRA;
- 814:	8b b1       	in	r24, 0x0b	; 11
+ 804:	8b b1       	in	r24, 0x0b	; 11
 	data = UDR;
- 816:	9c b1       	in	r25, 0x0c	; 12
+ 806:	9c b1       	in	r25, 0x0c	; 12
 //	if ((status & (FRAMING_ERROR | PARITY_ERROR | DATA_OVERRUN))==0){
 		if (rx_counter == RX_BUFFER_SIZE)
- 818:	80 91 96 00 	lds	r24, 0x0096
- 81c:	80 32       	cpi	r24, 0x20	; 32
- 81e:	51 f0       	breq	.+20     	; 0x834 <__vector_11+0x32>
+ 808:	80 91 96 00 	lds	r24, 0x0096
+ 80c:	80 32       	cpi	r24, 0x20	; 32
+ 80e:	51 f0       	breq	.+20     	; 0x824 <__vector_11+0x32>
 			return;
 
 	   	rx_buffer[rx_counter++] = data;
- 820:	80 91 96 00 	lds	r24, 0x0096
- 824:	e8 2f       	mov	r30, r24
- 826:	f0 e0       	ldi	r31, 0x00	; 0
- 828:	e9 5d       	subi	r30, 0xD9	; 217
- 82a:	fb 4f       	sbci	r31, 0xFB	; 251
- 82c:	90 83       	st	Z, r25
- 82e:	8f 5f       	subi	r24, 0xFF	; 255
- 830:	80 93 96 00 	sts	0x0096, r24
+ 810:	80 91 96 00 	lds	r24, 0x0096
+ 814:	e8 2f       	mov	r30, r24
+ 816:	f0 e0       	ldi	r31, 0x00	; 0
+ 818:	e9 5d       	subi	r30, 0xD9	; 217
+ 81a:	fb 4f       	sbci	r31, 0xFB	; 251
+ 81c:	90 83       	st	Z, r25
+ 81e:	8f 5f       	subi	r24, 0xFF	; 255
+ 820:	80 93 96 00 	sts	0x0096, r24
 //	}
 }
- 834:	ff 91       	pop	r31
- 836:	ef 91       	pop	r30
- 838:	9f 91       	pop	r25
- 83a:	8f 91       	pop	r24
- 83c:	0f 90       	pop	r0
- 83e:	0f be       	out	0x3f, r0	; 63
- 840:	0f 90       	pop	r0
- 842:	1f 90       	pop	r1
- 844:	18 95       	reti
+ 824:	ff 91       	pop	r31
+ 826:	ef 91       	pop	r30
+ 828:	9f 91       	pop	r25
+ 82a:	8f 91       	pop	r24
+ 82c:	0f 90       	pop	r0
+ 82e:	0f be       	out	0x3f, r0	; 63
+ 830:	0f 90       	pop	r0
+ 832:	1f 90       	pop	r1
+ 834:	18 95       	reti
 
-00000846 <getData>:
+00000836 <getData>:
 //=============================================================================
 unsigned char getData(char * buffer, unsigned char buf_len){
 
 	if (rx_counter == 0)
- 846:	20 91 96 00 	lds	r18, 0x0096
- 84a:	22 23       	and	r18, r18
- 84c:	29 f1       	breq	.+74     	; 0x898 <getData+0x52>
+ 836:	20 91 96 00 	lds	r18, 0x0096
+ 83a:	22 23       	and	r18, r18
+ 83c:	29 f1       	breq	.+74     	; 0x888 <getData+0x52>
 		return 0;
 	cli();
- 84e:	f8 94       	cli
+ 83e:	f8 94       	cli
 	unsigned char c,
 		end = (buf_len < RX_BUFFER_SIZE) ? buf_len : RX_BUFFER_SIZE;
- 850:	61 32       	cpi	r22, 0x21	; 33
- 852:	e0 f4       	brcc	.+56     	; 0x88c <getData+0x46>
+ 840:	61 32       	cpi	r22, 0x21	; 33
+ 842:	e0 f4       	brcc	.+56     	; 0x87c <getData+0x46>
 		end = (end < rx_counter) ? end : rx_counter;
- 854:	20 91 96 00 	lds	r18, 0x0096
- 858:	62 17       	cp	r22, r18
- 85a:	a8 f4       	brcc	.+42     	; 0x886 <getData+0x40>
+ 844:	20 91 96 00 	lds	r18, 0x0096
+ 848:	62 17       	cp	r22, r18
+ 84a:	a8 f4       	brcc	.+42     	; 0x876 <getData+0x40>
 		c = end;
 
 	while(end--){
- 85c:	66 23       	and	r22, r22
- 85e:	71 f0       	breq	.+28     	; 0x87c <getData+0x36>
- 860:	46 2f       	mov	r20, r22
- 862:	41 50       	subi	r20, 0x01	; 1
+ 84c:	66 23       	and	r22, r22
+ 84e:	71 f0       	breq	.+28     	; 0x86c <getData+0x36>
+ 850:	46 2f       	mov	r20, r22
+ 852:	41 50       	subi	r20, 0x01	; 1
 		buffer[end] = rx_buffer[end];
- 864:	24 2f       	mov	r18, r20
- 866:	30 e0       	ldi	r19, 0x00	; 0
- 868:	f9 01       	movw	r30, r18
- 86a:	e9 5d       	subi	r30, 0xD9	; 217
- 86c:	fb 4f       	sbci	r31, 0xFB	; 251
- 86e:	50 81       	ld	r21, Z
- 870:	28 0f       	add	r18, r24
- 872:	39 1f       	adc	r19, r25
- 874:	f9 01       	movw	r30, r18
- 876:	50 83       	st	Z, r21
+ 854:	24 2f       	mov	r18, r20
+ 856:	30 e0       	ldi	r19, 0x00	; 0
+ 858:	f9 01       	movw	r30, r18
+ 85a:	e9 5d       	subi	r30, 0xD9	; 217
+ 85c:	fb 4f       	sbci	r31, 0xFB	; 251
+ 85e:	50 81       	ld	r21, Z
+ 860:	28 0f       	add	r18, r24
+ 862:	39 1f       	adc	r19, r25
+ 864:	f9 01       	movw	r30, r18
+ 866:	50 83       	st	Z, r21
 	unsigned char c,
 		end = (buf_len < RX_BUFFER_SIZE) ? buf_len : RX_BUFFER_SIZE;
 		end = (end < rx_counter) ? end : rx_counter;
 		c = end;
 
 	while(end--){
- 878:	41 50       	subi	r20, 0x01	; 1
- 87a:	a0 f7       	brcc	.-24     	; 0x864 <getData+0x1e>
+ 868:	41 50       	subi	r20, 0x01	; 1
+ 86a:	a0 f7       	brcc	.-24     	; 0x854 <getData+0x1e>
 		buffer[end] = rx_buffer[end];
 	}
 
 	rx_counter = 0;
- 87c:	10 92 96 00 	sts	0x0096, r1
+ 86c:	10 92 96 00 	sts	0x0096, r1
 	sei();
- 880:	78 94       	sei
+ 870:	78 94       	sei
 
 	return c;
- 882:	86 2f       	mov	r24, r22
- 884:	08 95       	ret
+ 872:	86 2f       	mov	r24, r22
+ 874:	08 95       	ret
 	if (rx_counter == 0)
 		return 0;
 	cli();
 	unsigned char c,
 		end = (buf_len < RX_BUFFER_SIZE) ? buf_len : RX_BUFFER_SIZE;
 		end = (end < rx_counter) ? end : rx_counter;
- 886:	60 91 96 00 	lds	r22, 0x0096
- 88a:	e8 cf       	rjmp	.-48     	; 0x85c <getData+0x16>
+ 876:	60 91 96 00 	lds	r22, 0x0096
+ 87a:	e8 cf       	rjmp	.-48     	; 0x84c <getData+0x16>
 
 	if (rx_counter == 0)
 		return 0;
 	cli();
 	unsigned char c,
 		end = (buf_len < RX_BUFFER_SIZE) ? buf_len : RX_BUFFER_SIZE;
- 88c:	60 e2       	ldi	r22, 0x20	; 32
+ 87c:	60 e2       	ldi	r22, 0x20	; 32
 		end = (end < rx_counter) ? end : rx_counter;
- 88e:	20 91 96 00 	lds	r18, 0x0096
- 892:	62 17       	cp	r22, r18
- 894:	18 f3       	brcs	.-58     	; 0x85c <getData+0x16>
- 896:	f7 cf       	rjmp	.-18     	; 0x886 <getData+0x40>
+ 87e:	20 91 96 00 	lds	r18, 0x0096
+ 882:	62 17       	cp	r22, r18
+ 884:	18 f3       	brcs	.-58     	; 0x84c <getData+0x16>
+ 886:	f7 cf       	rjmp	.-18     	; 0x876 <getData+0x40>
 }
 //=============================================================================
 unsigned char getData(char * buffer, unsigned char buf_len){
 
 	if (rx_counter == 0)
 		return 0;
- 898:	80 e0       	ldi	r24, 0x00	; 0
+ 888:	80 e0       	ldi	r24, 0x00	; 0
 
 	rx_counter = 0;
 	sei();
 
 	return c;
 }
- 89a:	08 95       	ret
+ 88a:	08 95       	ret
 
-0000089c <_exit>:
- 89c:	f8 94       	cli
+0000088c <_exit>:
+ 88c:	f8 94       	cli
 
-0000089e <__stop_program>:
- 89e:	ff cf       	rjmp	.-2      	; 0x89e <__stop_program>
+0000088e <__stop_program>:
+ 88e:	ff cf       	rjmp	.-2      	; 0x88e <__stop_program>

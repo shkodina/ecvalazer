@@ -34,7 +34,8 @@ void capture_wave (int16_t *buffer, uint16_t count)
 
 	do {
 //		ADCSRA = _BV(ADEN)|_BV(ADSC)|_BV(ADATE)|_BV(ADIF)|_BV(ADPS2)|_BV(ADPS1);
-		ADCSRA = _BV(ADEN)|_BV(ADSC)|_BV(ADATE)|_BV(ADIF);
+//		ADCSRA = _BV(ADEN)|_BV(ADSC)|_BV(ADATE)|_BV(ADIF)|_BV(ADPS2);
+		ADCSRA = _BV(ADEN)|_BV(ADSC)|_BV(ADATE)|_BV(ADIF)|_BV(ADPS2)|_BV(ADPS0);
 		while(bit_is_clear(ADCSRA, ADIF));
 		*buffer++ = ADC - 512;
 
@@ -124,9 +125,13 @@ int main (void)
 				fft_output(bfly_buff, spektrum);
 				//t3 = TCNT1;
 				for (n = 0; n < FFT_N / 2; n+=2) {
-					s = (spektrum[n] + spektrum[n+1]) / 2;
+					//s = (spektrum[n] + spektrum[n+1]) / 2;
+					s = spektrum[n];
 					//xmitf(PSTR("\r\n%4u:%5u "), n, s);
-					loggerWriteToMarker((LogMesT)"\r*", '*');
+					//char str[10];
+					//sprintf(str, "\n\r %d**",n);
+					//loggerWriteToMarker((LogMesT)str, '*');
+					loggerWrite("\n\r",2);
 					//s /= FFT_N;
 					for (m = 0; m < s; m++) loggerWrite("**",1);
 				}
